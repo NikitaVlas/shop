@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "effector": "^23.2.2",
+    "effector-react": "^23.2.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
