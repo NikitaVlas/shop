@@ -1,13 +1,17 @@
+'use client'
+import { useLang } from '@/hooks/useLang'
+
 const Header = () => {
-    return (
-        <header className="header">
-            <div className="container header__container">
-                <button className="btn-reset header__burger">
+  const { lang, translations } = useLang()
+  return (
+    <header className='header'>
+      <div className='container header__container'>
+        <button className='btn-reset header__burger'>
+          {translations[lang].header.menu_btn}
+        </button>
+      </div>
+    </header>
+  )
+}
 
-                </button>
-            </div>
-        </header>
-    );
-};
-
-export default Header;
+export default Header

@@ -1,10 +1,8 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+// eslint-disable-next-line @typescript-eslint/quotes
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <h1>Page</h1>
     </main>
-  );
+  )
 }
