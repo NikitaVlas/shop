@@ -2,6 +2,7 @@
 import { useLang } from '@/hooks/useLang'
 import Logo from '@/components/elements/logo/Logo'
 import Link from 'next/link'
+import Menu from '@/components/modules/Header/Menu'
 
 const Header = () => {
   const { lang, translations } = useLang()
@@ -11,6 +12,7 @@ const Header = () => {
         <button className='btn-reset header__burger'>
           {translations[lang].header.menu_btn}
         </button>
+        <Menu />
         <div className='header__logo'>
           <Logo />
         </div>
