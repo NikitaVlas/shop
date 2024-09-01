@@ -5,6 +5,7 @@ import { $menuIsOpen, closeMenu } from '@/context/madals'
 import { removeOverflowHiddenFromBody } from '@/lib/utils/common'
 import { AllowedLangs } from '@/constants/lang'
 import { setLang } from '@/context/lang'
+import Logo from '@/components/elements/logo/Logo'
 
 const Menu = () => {
   const [showCatalogList, setShowCatalogList] = useState(false)
@@ -28,29 +29,38 @@ const Menu = () => {
 
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
-      <button
-        className={`btn-reset nav-menu__close ${menuIsOpen ? 'open' : ''}`}
-        onClick={handelCloseMenu}
-      />
-      <div className={`nav-menu__lang ${menuIsOpen ? 'open' : ''}`}>
+      <div className='container nav-menu__container'>
+        <div className={`nav-menu__logo ${menuIsOpen ? 'open' : ''}`}>
+          <Logo />
+        </div>
+        <img
+          className={`nav-menu__bg ${menuIsOpen ? 'open' : ''}`}
+          src='/img/menu-bg.png'
+          alt='menu background'
+        />
         <button
-          className={`btn-reset nav-menu__lang__btn ${
-            lang === 'ru' ? 'lang-active' : ''
-          }`}
-          onClick={handleSwitchLangToRu}
-        >
-          RU
-        </button>
-        <button
-          className={`btn-reset nav-menu__lang__btn ${
-            lang === 'en' ? 'lang-active' : ''
-          }`}
-          onClick={handleSwitchLangToEn}
-        >
-          EN
-        </button>
+          className={`btn-reset nav-menu__close ${menuIsOpen ? 'open' : ''}`}
+          onClick={handelCloseMenu}
+        />
+        <div className={`nav-menu__lang ${menuIsOpen ? 'open' : ''}`}>
+          <button
+            className={`btn-reset nav-menu__lang__btn ${
+              lang === 'ru' ? 'lang-active' : ''
+            }`}
+            onClick={handleSwitchLangToRu}
+          >
+            RU
+          </button>
+          <button
+            className={`btn-reset nav-menu__lang__btn ${
+              lang === 'en' ? 'lang-active' : ''
+            }`}
+            onClick={handleSwitchLangToEn}
+          >
+            EN
+          </button>
+        </div>
       </div>
-      <h1>Menu</h1>
     </nav>
   )
 }
