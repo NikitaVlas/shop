@@ -6,6 +6,6 @@ export const openMenu = modals.createEvent()
 export const closeMenu = modals.createEvent()
 
 export const $menuIsOpen = modals
-  .createStore(fasle)
+  .createStore(false)
   .on(openMenu, () => true)
   .on(closeMenu, () => true)
