@@ -4,3 +4,12 @@ export interface IAccordionProps {
   titleClass: string
   rotateIconClass?: string
 }
+
+export interface IMenuLinkItemProps {
+  item: {
+    id: number
+    text: string
+    href: string
+  }
+  handleRedirectToCatalog: (arg0: string) => void
+}
