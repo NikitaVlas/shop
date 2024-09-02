@@ -59,6 +59,13 @@ const Menu = () => {
           >
             EN
           </button>
+          <ul
+            className={`list-reset nav-menu__list ${menuIsOpen ? 'open' : ''}`}
+          >
+            <li className='nav-menu__list__item' />
+            <li className='nav-menu__list__item' />
+            <li className='nav-menu__list__item' />
+          </ul>
         </div>
       </div>
     </nav>
