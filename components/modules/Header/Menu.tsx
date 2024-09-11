@@ -40,6 +40,12 @@ const Menu = () => {
     setShowContactsList(false)
   }
 
+  const handleShowContactsList = () => {
+    setShowCatalogList(false)
+    setShowBuyerList(false)
+    setShowContactsList(true)
+  }
+
   const handelCloseMenu = () => {
     removeOverflowHiddenFromBody()
     closeMenu()
