@@ -289,6 +289,54 @@ const Menu = () => {
               )}
             </AnimatePresence>
           </li>
+          <li className='nav-menu__list__item'>
+            <button
+              className='btn-reset nav-menu__list__item__btn'
+              onMouseEnter={handleShowContactsList}
+            >
+              {translations[lang].main_menu.contacts}
+            </button>
+            <AnimatePresence>
+              {showContactsList && (
+                <motion.ul
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className='list-reset nav-menu__accordion'
+                >
+                  <li className='nav-menu__accordion__item'>
+                    <a
+                      href='tel:+49000000'
+                      className='nav-menu__accordion__item__link nav-menu__accordion__item__title'
+                    >
+                      +49000000
+                    </a>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <a
+                      href='nikistosov@gmail.com'
+                      className='nav-menu__accordion__item__link'
+                    >
+                      Email
+                    </a>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <Link
+                      href='https://t.me/nikita'
+                      className='nav-menu__accordion__item__link'
+                    >
+                      {translations[lang].main_menu.tg}
+                    </Link>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <Link href='https://vk.com' className='nav-menu__accordion__item__link'>
+                      {translations[lang].main_menu.vk}
+                    </Link>
+                  </li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </li>
         </ul>
       </div>
     </nav>
