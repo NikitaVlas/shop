@@ -335,7 +335,8 @@ const Menu = () => {
                     </Link>
                   </li>
                   <li className='nav-menu__accordion__item'>
-                    <Link href='https://vk.com' className='nav-menu__accordion__item__link'>
+                    <Link
+                      href='https://vk.com' className='nav-menu__accordion__item__link'>
                       {translations[lang].main_menu.vk}
                     </Link>
                   </li>
