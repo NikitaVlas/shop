@@ -19,6 +19,8 @@ const Menu = () => {
   const menuIsOpen = useUnit($menuIsOpen)
   const { lang, translations } = useLang()
   const pathname = usePathname()
+  const isMedia800 = useMediaQuery(800)
+  const isMedia450 = useMediaQuery(450)
 
   const handelSwitchLang = (lang: string) => {
     setLang(lang as AllowedLangs)
