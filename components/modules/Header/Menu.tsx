@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Accordion from '@/components/modules/Accordion/Accordion'
 import { usePathname } from 'next/navigation'
 import MenuLinkItem from '@/components/modules/Header/MenuLinkItem'
+import Link from 'next/link'
 
 const Menu = () => {
   const [showCatalogList, setShowCatalogList] = useState(false)
@@ -30,6 +31,12 @@ const Menu = () => {
   const handleShowCatalogList = () => {
     setShowCatalogList(true)
     setShowBuyerList(false)
+    setShowContactsList(false)
+  }
+
+  const handleShowBuyerList = () => {
+    setShowCatalogList(false)
+    setShowBuyerList(true)
     setShowContactsList(false)
   }
 
@@ -146,48 +153,92 @@ const Menu = () => {
           >
             EN
           </button>
-          <ul
-            className={`list-reset nav-menu__list ${menuIsOpen ? 'open' : ''}`}
-          >
-            <li className='nav-menu__list__item'>
-              <button
-                className='btn-reset nav-menu__list__item__btn'
-                onMouseEnter={handleShowCatalogList}
-              >
-                {translations[lang].main_menu.catalog}
-              </button>
-              <AnimatePresence>
-                {showCatalogList && (
-                  <motion.ul
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className='list-reset nav-menu__accordion'
-                  >
-                    <li className='nav-menu__accordion__item'>
-                      <Accordion
-                        title={translations[lang].main_menu.cloth}
-                        titleClass='btn-reset nav-menu__accordion__item__title'
-                      >
-                        <ul className='list-reset nav-menu__accordion__item__list'>
-                          {clothLinks.map((item) => (
-                            <MenuLinkItem
-                              key={item.id}
-                              item={item}
-                              handleRedirectToCatalog={handleRedirectToCatalog}
-                            />
-                          ))}
-                        </ul>
-                      </Accordion>
-                    </li>
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </li>
-            <li className='nav-menu__list__item' />
-            <li className='nav-menu__list__item' />
-          </ul>
         </div>
+        <ul className={`list-reset nav-menu__list ${menuIsOpen ? 'open' : ''}`}>
+          <li className='nav-menu__list__item'>
+            <button
+              className='btn-reset nav-menu__list__item__btn'
+              onMouseEnter={handleShowCatalogList}
+            >
+              {translations[lang].main_menu.catalog}
+            </button>
+            <AnimatePresence>
+              {showCatalogList && (
+                <motion.ul
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className='list-reset nav-menu__accordion'
+                >
+                  <li className='nav-menu__accordion__item'>
+                    <Accordion
+                      title={translations[lang].main_menu.cloth}
+                      titleClass='btn-reset nav-menu__accordion__item__title'
+                    >
+                      <ul className='list-reset nav-menu__accordion__item__list'>
+                        {clothLinks.map((item) => (
+                          <MenuLinkItem
+                            key={item.id}
+                            item={item}
+                            handleRedirectToCatalog={handleRedirectToCatalog}
+                          />
+                        ))}
+                      </ul>
+                    </Accordion>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <Accordion
+                      title={translations[lang].main_menu.accessories}
+                      titleClass='btn-reset nav-menu__accordion__item__title'
+                    >
+                      <ul className='list-reset nav-menu__accordion__item__list'>
+                        {accessoriesLinks.map((item) => (
+                          <MenuLinkItem
+                            key={item.id}
+                            item={item}
+                            handleRedirectToCatalog={handleRedirectToCatalog}
+                          />
+                        ))}
+                      </ul>
+                    </Accordion>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <Accordion
+                      title={translations[lang].main_menu.souvenirs}
+                      titleClass='btn-reset nav-menu__accordion__item__title'
+                    >
+                      <ul className='list-reset nav-menu__accordion__item__list'>
+                        {souvenirsLinks.map((item) => (
+                          <MenuLinkItem
+                            key={item.id}
+                            item={item}
+                            handleRedirectToCatalog={handleRedirectToCatalog}
+                          />
+                        ))}
+                      </ul>
+                    </Accordion>
+                  </li>
+                  <li className='nav-menu__accordion__item'>
+                    <Accordion
+                      title={translations[lang].main_menu.office}
+                      titleClass='btn-reset nav-menu__accordion__item__title'
+                    >
+                      <ul className='list-reset nav-menu__accordion__item__list'>
+                        {officeLinks.map((item) => (
+                          <MenuLinkItem
+                            key={item.id}
+                            item={item}
+                            handleRedirectToCatalog={handleRedirectToCatalog}
+                          />
+                        ))}
+                      </ul>
+                    </Accordion>
+                  </li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </li>
+        </ul>
       </div>
     </nav>
   )
