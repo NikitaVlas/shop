@@ -12,6 +12,7 @@ import { usePathname } from 'next/navigation'
 import MenuLinkItem from '@/components/modules/Header/MenuLinkItem'
 import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import BuyersListItems from '@/components/modules/Header/BuyersListItems'
 
 const Menu = () => {
   const [showCatalogList, setShowCatalogList] = useState(false)
@@ -21,7 +22,7 @@ const Menu = () => {
   const { lang, translations } = useLang()
   const pathname = usePathname()
   const isMedia800 = useMediaQuery(800)
-  const isMedia450 = useMediaQuery(450)
+  const isMedia640 = useMediaQuery(640)
 
   const handelSwitchLang = (lang: string) => {
     setLang(lang as AllowedLangs)
@@ -138,7 +139,7 @@ const Menu = () => {
         </div>
         <img
           className={`nav-menu__bg ${menuIsOpen ? 'open' : ''}`}
-          src='/img/menu-bg.png'
+          src={`/img/menu-bg${isMedia800 ? '-small' : ''}.png`}
           alt='menu background'
         />
         <button
@@ -250,55 +251,38 @@ const Menu = () => {
             </li>
           )}
           <li className='nav-menu__list__item'>
-            <button
-              className='btn-reset nav-menu__list__item__btn'
-              onMouseEnter={handleShowBuyerList}
-            >
-              {translations[lang].main_menu.buyers}
-            </button>
-            <AnimatePresence>
-              {showBuyerList && (
-                <motion.ul
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className='list-reset nav-menu__accordion'
-                >
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/about'
-                      className='nav-menu__accordion__item__link nav-menu__accordion__item__title'
-                    >
-                      {translations[lang].main_menu.about}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/blog'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.blog}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/shipping-and-payment'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.shipping}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/purchase-returns'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.returns}
-                    </Link>
-                  </li>
-                </motion.ul>
-              )}
-            </AnimatePresence>
+            {!isMedia640 && (
+              <button
+                className='btn-reset nav-menu__list__item__btn'
+                onMouseEnter={handleShowBuyerList}
+              >
+                {translations[lang].main_menu.buyers}
+              </button>
+            )}
+            {!isMedia640 && (
+              <AnimatePresence>
+                {showBuyerList && (
+                  <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='list-reset nav-menu__accordion'
+                  >
+                    <BuyersListItems />
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            )}
+            {isMedia640 && (
+              <Accordion
+                title={translations[lang].main_menu.buyers}
+                titleClass='btn-reset nav-menu__list__item__btn'
+              >
+                <ul className='list-reset nav-menu__accordion__item__list'>
+                  <BuyersListItems />
+                </ul>
+              </Accordion>
+            )}
           </li>
           <li className='nav-menu__list__item'>
             <button
